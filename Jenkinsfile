@@ -17,13 +17,7 @@ pipeline{
                 }
             }
 
-//             stage ('code Testing'){
-//                   steps{
-//                   echo 'code start testing...'
-//                   sh 'mvn clean test'
-//                   echo 'Code testing Done '
-//                   }
-//             }
+
 
             stage ('code packaging'){
                 steps{
@@ -33,15 +27,14 @@ pipeline{
                 }
             }
 
-//             stage ('code compilation'){
-//                  steps{
-//                        script{
-//                        withCredentials([String(credentialsId:'S3_Backend')])
-//                                       {
-//                                       sh '
-//                                       }
-//                         }
-//                  }
-//             }
+            stage ('s3 deploy'){
+                 steps{
+                 withCredential(credentialId:'users3')
+                 echo 'uploaing to s3'
+                 sh 'aws s3  /var/lib/jenkins/workspace/cafe express/target/com.inn.cafe-0.0.1-SNAPSHOT.jar s3://frontendandbackend/com.inn.cafe-0.0.1-SNAPSHOT.jar'
+                 echo 'Code packaging Done.'
+                 }
+            }
+
         }
 }
