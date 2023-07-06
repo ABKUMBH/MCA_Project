@@ -1,5 +1,6 @@
 package com.inn.cafe.serviceImpl;
 
+import com.inn.cafe.JWT.JwtFilter;
 import com.inn.cafe.dao.BillDao;
 import com.inn.cafe.dao.CategoryDao;
 import com.inn.cafe.dao.ProductDao;
@@ -19,6 +20,9 @@ public class DashboardServiceImpl implements DashboardService {
     CategoryDao categoryDao;
 
     @Autowired
+    JwtFilter jwtFilter;
+
+    @Autowired
     ProductDao productDao;
 
     @Autowired
@@ -29,7 +33,7 @@ public class DashboardServiceImpl implements DashboardService {
         Map<String,Object> map = new HashMap<>();
         map.put("category", categoryDao.count());
         map.put("product", productDao.count());
-        map.put("bill", billDao.count());
+        map.put("bill", billDao.getBillByUserName(jwtFilter.getCurrentUser()).stream().count());
         return new ResponseEntity<>(map, HttpStatus.OK);
     }
 }

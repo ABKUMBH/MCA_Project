@@ -52,7 +52,7 @@ public class BillServiceImpl implements BillService {
                 }
 
                 String data = "Name: " + requestMap.get("name") + "\n" + "Contact Number: " + requestMap.get("contactNumber") +
-                        "\n" + "Email: " + requestMap.get("email") + "\n" + "address: " + requestMap.get("address") + "\n" + "Payment Method: " + requestMap.get("paymentMethod");
+                        "\n" + "Email: " + requestMap.get("email") + "\n" + "Address: " + requestMap.get("address") + "\n" + "Pincode: " + requestMap.get("pincode") + "\n" + "Payment Method: " + requestMap.get("paymentMethod");
 
                 Document document = new Document();
                 PdfWriter.getInstance(document,new FileOutputStream(CafeConstants.STORE_LOCATION+"\\"+fileName+".pdf"));
@@ -60,7 +60,7 @@ public class BillServiceImpl implements BillService {
                 document.open();
                 setRectangleInPdf(document);
 
-                Paragraph chunk = new Paragraph("Dominos Pizza",getFont("Header"));
+                Paragraph chunk = new Paragraph(" Cafe Express",getFont("Header"));
                 chunk.setAlignment(Element.ALIGN_CENTER);
                 document.add(chunk);
 
@@ -148,6 +148,7 @@ public class BillServiceImpl implements BillService {
             bill.setName((String) requestMap.get("name"));
             bill.setEmail((String) requestMap.get("email"));
             bill.setAddress((String) requestMap.get("address"));
+            bill.setAddress((String) requestMap.get("pincode"));
             bill.setContactNumber((String) requestMap.get("contactNumber"));
             bill.setPaymentMethod((String) requestMap.get("paymentMethod"));
             bill.setTotal(Integer.parseInt((String) requestMap.get("totalAmount")));
@@ -159,11 +160,12 @@ public class BillServiceImpl implements BillService {
         }
     }
 
-    private boolean validateRequestMap(Map<String, Object> requestMap) {
+    private boolean validateRequestMap(Map<String,Object> requestMap) {
         return requestMap.containsKey("name") &&
                 requestMap.containsKey("contactNumber") &&
                 requestMap.containsKey("email") &&
                 requestMap.containsKey("address") &&
+                requestMap.containsKey("pincode") &&
                 requestMap.containsKey("paymentMethod") &&
                 requestMap.containsKey("productDetails") &&
                 requestMap.containsKey("totalAmount");

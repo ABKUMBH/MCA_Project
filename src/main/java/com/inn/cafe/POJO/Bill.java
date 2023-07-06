@@ -38,6 +38,9 @@ public class Bill implements Serializable {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "pincode")
+    private Integer pincode;
+
     @Column(name = "paymentmethod")
     private String paymentMethod;
 

@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService {
                     return CafeUtils.getResponseEntity("User id doesn't exist", HttpStatus.OK);
                 }
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNATHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e) {
             e.printStackTrace();

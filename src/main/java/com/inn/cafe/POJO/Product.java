@@ -3,6 +3,7 @@ package com.inn.cafe.POJO;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import java.awt.image.BufferedImage;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -42,9 +43,6 @@ public class Product implements Serializable {
 
     @Column(name = "status")
     private String status;
-
-
-
 
 
 }
