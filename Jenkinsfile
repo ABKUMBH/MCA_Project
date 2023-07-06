@@ -26,7 +26,7 @@ pipeline {
 
         stage ('S3 Deploy') {
             steps {
-                withCredentials([string(credentialsId: 'users3', variable: 'awsCredentials')]) {
+                withCredentials([(credentialsId: 'users3')]) {
                     echo 'Uploading to S3...'
                     sh 'aws s3 cp /var/lib/jenkins/workspace/cafe\\ express/target/com.inn.cafe-0.0.1-SNAPSHOT.jar s3://frontendandbackend/com.inn.cafe-0.0.1-SNAPSHOT.jar --profile $awsCredentials'
                     echo 'S3 upload Done.'
