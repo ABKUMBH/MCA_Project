@@ -1,0 +1,44 @@
+pipeline {
+    options {
+            buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+    }
+    agent any
+    tools {
+        maven 'maven_3.8.8'
+    }
+    stages{
+        stage('code compile'){
+            steps{
+            echo 'code started compiling'
+            sh 'mvn clean compile'
+            echo 'code compiled successfully'
+            }
+        }
+
+
+        stage('code package'){
+            steps{
+            echo 'code started packaging'
+            sh 'mvn clean package -DskipTests'
+            echo 'code packaged successfully'
+            }
+        }
+
+
+        stage('code package'){
+            steps{
+            echo 'code started packaging'
+            sh 'mvn clean package -DskipTests'
+            echo 'code packaged successfully'
+            }
+        }
+
+        stage('Building and tag docker image'){
+             steps{
+             echo 'starting building docker image'
+             sh 'docker build -t abkumbh/com.inn.cafe:latest'
+             echo 'completed building docker image'
+             }
+        }
+    }
+}
