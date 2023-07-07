@@ -43,7 +43,7 @@ public class EmailUtils {
         helper.setFrom("abhikumbharalk@gmail.com");
         helper.setTo(to);
         helper.setSubject(subject);
-        String htmlMsg = "<p><b>Your login details for Dominos Pizza</b><br>" +
+        String htmlMsg = "<p><b>Your login details for Cafe Express</b><br>" +
                 "<b>Email: </b>" + to + " <br>" +
                 "<b>Password: </b>" + password + "<br>" +
                 "<br><a href=\"http://localhost:4200/\">Click here to login</a></p>";
