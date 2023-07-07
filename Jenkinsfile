@@ -26,9 +26,9 @@ pipeline {
 
         stage ('S3 Deploy') {
             steps {
-                withAWS(credentials: 'users3') {
+                withAWS(credentials: 'users3', region: 'us-east-1') {
                     echo 'Uploading to S3...'
-                    s3Upload(file:'/var/lib/jenkins/workspace/cafe/target/com.inn.cafe-0.0.1-SNAPSHOT.jar', bucket:'mfrontendandbackend', path:'s3://frontendandbackend/com.inn.cafe-0.0.1-SNAPSHOT.jar')
+                    s3Upload(file:'/var/lib/jenkins/workspace/cafe/target/com.inn.cafe-0.0.1-SNAPSHOT.jar', bucket:'frontendandbackend', path:'s3://frontendandbackend/com.inn.cafe-0.0.1-SNAPSHOT.jar')
                     echo 'S3 upload Done.'
                 }
             }
