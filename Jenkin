@@ -24,15 +24,6 @@ pipeline {
             }
         }
 
-
-        stage('code package'){
-            steps{
-            echo 'code started packaging'
-            sh 'mvn clean package -DskipTests'
-            echo 'code packaged successfully'
-            }
-        }
-
         stage('Building and tag docker image'){
              steps{
              echo 'starting building docker image'
