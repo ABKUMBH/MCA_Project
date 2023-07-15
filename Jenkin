@@ -32,6 +32,18 @@ pipeline {
              }
         }
 
+        stage('Docker push to Docker Hub') {
+              steps {
+              withCredentials([string(credentialsId: 'dockerhubcred', variable: 'dockerhubcred')]) {
+              sh 'docker login docker.io -u abkumbh -p ${dockerhubcred}'
+              echo "Pushing Docker Image to DockerHub: In Progress"
+              sh 'docker push abkumbh/cafe:latest'
+              echo "Pushing Docker Image to DockerHub: Completed"
+              sh 'whoami'
+              }
+        }
+
+
         stage('Docker Image Push to Amazon ECR') {
              steps {
              withDockerRegistry([credentialsId:'ecr:us-east-1:users3', url:"https://804475515851.dkr.ecr.us-east-1.amazonaws.com"]) {
