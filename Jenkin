@@ -41,6 +41,7 @@ pipeline {
               echo "Pushing Docker Image to DockerHub: Completed"
               sh 'whoami'
               }
+              }
         }
 
 
