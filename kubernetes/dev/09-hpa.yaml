@@ -1,0 +1,17 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: dev-cafe-hpa
+  namespace: dev
+  labels:
+    env: dev
+    app: cafe-ms
+    layer: backend
+spec:
+  maxReplicas: 5
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: dev-cafe-deployment
+  targetCPUUtilizationPercentage: 80
