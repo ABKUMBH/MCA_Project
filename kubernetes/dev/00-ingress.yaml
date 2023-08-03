@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: cafe.techdevops.in
+    - host: cafe.cloudgrowthtech.com
       http:
         paths:
           - pathType: Prefix
